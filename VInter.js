@@ -8,20 +8,19 @@ var cor = new Vue({
 
     // array1:[83,116,186,81,114],
     // array2:[11.2,9.3,21.6,6.9,10.2],
-    array3:[130,650,99,150,128,302,95,945,368,961],
-    array4:[186,699,132,272,291,331,199,1890,788,1601],
+    // array3:[130,650,99,150,128,302,95,945,368,961],
+    // array4:[186,699,132,272,291,331,199,1890,788,1601],
 
     content: '',
     array1:[],
     array2:[],
-
 },
 
   methods:{
 
     onFileChange(e) {
       let files = e.target.files
-      if (files.length = 2) {
+      if (files.length == 2) {
         this.loadNumbers(files)
       }
     },
@@ -133,9 +132,9 @@ var cor = new Vue({
     },
 
     reg(){
-      var h = this.regNumerator(this.array3,this.array4)/this.regDenominator(this.array3);
+      var h = this.regNumerator(this.array1,this.array2)/this.regDenominator(this.array1);
       this.result3 = h;
-      this.result4 = this.avgOfArray(this.array4) - h* this.avgOfArray(this.array3);
+      this.result4 = this.avgOfArray(this.array2) - h* this.avgOfArray(this.array1);
 
     }
 
