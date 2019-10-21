@@ -63,8 +63,6 @@
         let reader2 = new FileReader()
         reader1.onload = (e) => {
         this.state.content = e.target.result
-
-
         this.setState({
           array1:this.state.content.split("\n").map(function(item) {
                 return parseInt(item, 10);
@@ -172,7 +170,6 @@
         var s =this.calNumerator(this.state.array1,this.state.array2)/this.calDenominator(this.state.array1,this.state.array2);
         this.state.result1 = s;
         this.state.result2 = Math.pow(s,2);
-        //this.result1 = this.array1[0];
       }
 
       reg(){
