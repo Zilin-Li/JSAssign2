@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+
+    <title>BCPR280 Assignment 2</title>
+  </head>
+
+  <body>
+    <h4>VueJS</h4>
+    <div id="app1">
+      <h1>Result of Correlation</h1>
+      <input type="file" @change="onFileChange" multiple>
+      <h4>r<sub>xy</sub> = {{result1}} </h4>
+      <h4>r<sup>2</sup> = {{result2}}</h4>
+      <input type="button" value="Correlation" @click="cal">
+    <!-- </div> -->
+    <!-- <div id="Regression"> -->
+      <h1>Result of Regression</h1>
+      <h4>&#946 <sub>0</sub> = {{result3}}</h4>
+      <h4>&#946 <sub>1</sub> = {{result4}}</h4>
+      <input type="button" value="Regression" @click="reg">
+  <script src="calculation.js"></script>
+    </div>
+
+  <hr />
+  <h4>ReatJS</h4>
+
+
+
+
+
+  </body>
+</html>
