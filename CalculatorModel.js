@@ -1,5 +1,4 @@
 class Calculator{
-
     sumOfProduct(a,b){
       var n;
       var sum1 = 0;
@@ -66,5 +65,19 @@ class Calculator{
       var deno = this.sumOfSquared(a) - a.length * Math.pow(this.avgOfArray(a),2)
       return deno;
     }
+
+    cal(array1, array2){
+      var s =this.calNumerator(array1,array2)/this.calDenominator(array1,array2);
+      this.result1 = s
+      this.result2 = Math.pow(s,2);
+    }
+
+    reg(array1, array2){
+      var h = this.regNumerator(array1,array2)/this.regDenominator(array1);
+      this.result3 = h;
+      this.result4 = this.avgOfArray(array2) - h* this.avgOfArray(array1);
+    }
+
+
 
 }

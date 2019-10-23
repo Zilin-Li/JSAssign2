@@ -20,12 +20,12 @@
       <input type="file" @change="onFileChange" multiple>
       <h4>r<sub>xy</sub> = {{result1}} </h4>
       <h4>r<sup>2</sup> = {{result2}}</h4>
-      <input type="button" value="Correlation" @click="cal">
+      <input type="button" value="Correlation" @click="calResult">
 
       <h3>Result of Regression</h3>
       <h4>Bata<sub>0</sub> = {{result3}}</h4>
       <h4>Bata<sub>1</sub> = {{result4}}</h4>
-      <input type="button" value="Regression" @click="reg">
+      <input type="button" value="Regression" @click="regResult">
       <script src="VInter.js"></script>
     </div>
   <hr />
@@ -40,7 +40,6 @@
       constructor (props) {
         super(props)
         this.state = {
-          calculator:"",
           result1:"",
           result2:"",
           result3:"",
@@ -51,9 +50,9 @@
         }
 
         this.onFileChange = this.onFileChange.bind(this)
-        this.cal = this.cal.bind(this)
-        this.reg = this.reg.bind(this)
-        this.calulator = new Calculator()
+        this.calResult = this.calResult.bind(this)
+        this.regResult = this.regResult.bind(this)
+        this.calculator = new Calculator()
       }
 
       onFileChange (e) {
@@ -88,30 +87,21 @@
       }
 
       //这一部分是correlation算式。
-      cal(){
-        console.log(this.state.array1)
-        console.log(this.state.array2)
-        var s =this.calulator.calNumerator(this.state.array1,this.state.array2)/this.calulator.calDenominator(this.state.array1,this.state.array2);
-        //要用setState 方法赋值， 不能直接把值赋给属性成员
-        // this.state.result1 = s;
-        // this.state.result2 = Math.pow(s,2);
+      calResult(){
+        this.calculator.cal(this.state.array1,this.state.array2)
         this.setState({
-            result1: s,
-            result2: Math.pow(s,2)
+            result1: this.calculator.result1,
+            result2:  this.calculator.result2,
         })
       }
       //这一部分是Regression算式。
-
-      reg(){
-        var h = this.calulator.regNumerator(this.state.array1,this.state.array2)/this.calulator.regDenominator(this.state.array1);
-        // this.state.result3 = h;
-        // this.state.result4 = this.avgOfArray(this.state.array2) - h* this.avgOfArray(this.state.array1);
+      regResult(){
+        this.calculator.reg(this.state.array1,this.state.array2)
         this.setState({
-            result3: h,
-            result4:  this.calulator.avgOfArray(this.state.array2) - h* this.calulator.avgOfArray(this.state.array1)
+            result3: this.calculator.result3,
+            result4:  this.calculator.result4,
         })
       }
-
       render () {
         return (
           <div>
@@ -119,16 +109,15 @@
             <h3>Result of Correlation</h3>
             <h4>r<sub>xy</sub> = {this.state.result1} </h4>
             <h4>r<sup>2</sup> = {this.state.result2}</h4>
-            <button onClick={this.cal}>
+            <button onClick={this.calResult}>
               Correlation
             </button>
             <br />
             <br />
-
             <h3>Result of Regression</h3>
             <h4>B <sub>0</sub> = {this.state.result3}</h4>
             <h4>B <sub>1</sub> = {this.state.result4}</h4>
-            <button onClick={this.reg}>
+            <button onClick={this.regResult}>
               Correlation
             </button>
           </div>
