@@ -10,6 +10,7 @@
     <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
     <script src="public/js/CalculatorModel.js"></script>
+    <script src="public/js/Model.js"></script>
     <link rel="stylesheet" href="public/css/stylesheet.css">
     <title>BCPR280 Assignment 2</title>
   </head>
@@ -23,7 +24,7 @@
         <div id="app1" class="col-lg-6 overflow-auto">
           <h1 class="navbar bg-dark navbar-dark title " >VueJS Interface</h1>
           <div class="jumbotron enterFile" >
-            <input type="file" class="form-control-file border" data-toggle="tooltip" data-placement="bottom" title="Please choose two files." @change="onFileChange" multiple>
+            <input type="file" id="input1" class="form-control-file border" data-toggle="tooltip" data-placement="bottom" title="Please choose two files." @change="onFileChange" multiple>
             <br>
             <div v-show="arrayInfo">
               <p>Array1:{{array1}}</p>
@@ -50,7 +51,7 @@
             </tbody>
           </table>
           <input type="button" value="Calculation Results" class="btn btn-primary" @click="getResults">
-          <input type="button" value="Reset" class="btn btn-primary" @click="resetFile">
+          <input type="button" value="Reset" class="btn btn-primary " @click="resetFile">
         </div>
         <div id="app2" class="col-lg-6 overflow-auto">
         </div>

@@ -7,14 +7,14 @@ var cor = new Vue({
     result3:"",
     result4:"",
     content:'',
-    //numberArray:['',''],
     array1:[],
     array2:[],
     arrayInfo:false,
     errorMess:false,
     errorMessage:"",
 
-    calculator: new Calculator()
+  //  calculator: new Calculator()
+    calculator: new Calculator2()
 },
   methods:{
     onFileChange(e) {
@@ -105,6 +105,7 @@ var cor = new Vue({
       this.result2 = ''
       this.result3 = ''
       this.result4 = ''
+      document.getElementById("input1").value = "";
     },
     getResults(){
        this.calculator.results(this.array1, this.array2)

@@ -4,7 +4,9 @@
   "description": "",
   "main": "server.js",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "formidable": "^1.2.1",
+    "read-multiple-files": "^3.0.0"
   },
   "devDependencies": {},
   "scripts": {

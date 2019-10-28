@@ -31,6 +31,7 @@ class Calculator{
     avgOfArray(e){
       var avg
       avg = this.sumOfArray(e)/e.length
+
       return avg
     }
     calNumerator(a,b){
@@ -50,18 +51,23 @@ class Calculator{
     regNumerator(a,b){
       var numeP1 = this.sumOfProduct(a,b);
       var numeP2 = a.length*this.avgOfArray(a)*this.avgOfArray(b)
+
       var nume = numeP1 - numeP2
       return nume
     }
     regDenominator(a){
       var deno = this.sumOfSquared(a) - a.length * Math.pow(this.avgOfArray(a),2)
+      //console.log(a.length * Math.pow(this.avgOfArray(a),2))
+      console.log(this.avgOfArray(a))
       return deno
     }
+
     results(array1, array2){
       var s =this.calNumerator(array1,array2)/this.calDenominator(array1,array2)
       this.result1 = s
       this.result2 = Math.pow(s,2)
       var h = this.regNumerator(array1,array2)/this.regDenominator(array1)
+      console.log("cal"+this.regDenominator(array1))
       this.result3 = h
       this.result4 = this.avgOfArray(array2) - h* this.avgOfArray(array1)
     }
