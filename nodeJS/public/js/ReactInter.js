@@ -2,10 +2,10 @@ class FileInput extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      result1:"",
-      result2:"",
-      result3:"",
-      result4:"",
+      Rxy:"",
+      R2:"",
+      Bata1:"",
+      Bata0:"",
       content:'',
       array1:[],
       array2:[],
@@ -102,7 +102,7 @@ class FileInput extends React.Component {
       reader[i].onload = (e) =>{
         this.state.content = e.target.result
         let getArray = this.state.content.split("\n").map(function(item){
-          return parseInt(item,10)
+          return parseFloat(item,10)
         })
         //this.numberArray[i+offset] = getArray
         if(i == 0 && offset ==0){
@@ -122,10 +122,10 @@ class FileInput extends React.Component {
 
   resetFile(){
     this.setState({
-      result1:"",
-      result2:"",
-      result3:"",
-      result4:"",
+      Rxy:"",
+      R2:"",
+      Bata1:"",
+      Bata0:"",
       array1:[],
       array2:[],
       arrayInfo:'none',
@@ -137,10 +137,10 @@ class FileInput extends React.Component {
   getResults(){
     this.calculator.results(this.state.array1,this.state.array2)
     this.setState({
-        result1: this.calculator.result1,
-        result2: this.calculator.result2,
-        result3: this.calculator.result3,
-        result4: this.calculator.result4,
+        Rxy: this.calculator.Rxy,
+        R2: this.calculator.R2,
+        Bata1: this.calculator.Bata1,
+        Bata0: this.calculator.Bata0,
     })
   }
   render () {
@@ -151,8 +151,8 @@ class FileInput extends React.Component {
           <input type='file' id="input2" className="form-control-file border" data-toggle="tooltip" data-placement="bottom" title="Please choose two files." onChange={this.onFileChange} multiple/>
           <br/>
           <div style={{display: this.state.arrayInfo}}>
-            <p>Array1:{this.state.array1}</p>
-            <p>Array2:{this.state.array2}</p>
+            <p>Array1:[ {this.state.array1.toString()} ]</p>
+            <p>Array2:[ {this.state.array2.toString()} ]</p>
           </div>
           <div style={{display: this.state.errorMess}}>{this.state.errorMessage}</div>
         </div>
@@ -165,12 +165,12 @@ class FileInput extends React.Component {
           </thead>
           <tbody>
             <tr>
-              <td>R<sub>xy</sub> = {this.state.result1} </td>
-              <td>&beta;<sub>0</sub> = {this.state.result3}</td>
+              <td>R<sub>xy</sub> = {this.state.Rxy} </td>
+              <td>&beta;<sub>0</sub> = {this.state.Bata0}</td>
             </tr>
             <tr>
-              <td>R<sup>2</sup> = {this.state.result2}</td>
-              <td>&beta;<sub>1</sub> = {this.state.result4}</td>
+              <td>R<sup>2</sup> = {this.state.R2}</td>
+              <td>&beta;<sub>1</sub> = {this.state.Bata1}</td>
             </tr>
           </tbody>
         </table>

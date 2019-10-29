@@ -2,10 +2,10 @@ var cor = new Vue({
   el:'#app1',
   data:{
     abc:[],
-    result1:"",
-    result2:"",
-    result3:"",
-    result4:"",
+    Rxy:"",
+    R2:"",
+    Bata1:"",
+    Bata0:"",
     content:'',
     array1:[],
     array2:[],
@@ -81,7 +81,7 @@ var cor = new Vue({
         reader[i].onload = (e) =>{
           this.content = e.target.result
           let getArray = this.content.split("\n").map(function(item){
-            return parseInt(item,10)
+            return parseFloat(item,10)
           })
           //this.numberArray[i+offset] = getArray
           if(i == 0 && offset ==0){
@@ -89,7 +89,6 @@ var cor = new Vue({
             this.array1= getArray
           }
           else {
-
             this.array2= getArray
           }
         }
@@ -101,18 +100,18 @@ var cor = new Vue({
       this.array2=''
       this.arrayInfo=false
       this.errorMess=false
-      this.result1 = ''
-      this.result2 = ''
-      this.result3 = ''
-      this.result4 = ''
-      document.getElementById("input1").value = "";
+      this.Rxy = ''
+      this.R2 = ''
+      this.Bata1 = ''
+      this.Bata0 = ''
+      document.getElementById("input1").value = ""
     },
     getResults(){
        this.calculator.results(this.array1, this.array2)
-       this.result1 = this.calculator.result1
-       this.result2 = this.calculator.result2
-       this.result3 = this.calculator.result3
-       this.result4 = this.calculator.result4
+       this.Rxy = this.calculator.Rxy
+       this.R2 = this.calculator.R2
+       this.Bata1 = this.calculator.Bata1
+       this.Bata0 = this.calculator.Bata0
      }
   },
 });

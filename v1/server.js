@@ -4,9 +4,13 @@ var fs = require('fs');
 var path = require('path')
 var express = require('express')
 const readMultipleFiles = require('read-multiple-files');
-
+const Calculator2 = require('./public/js/Model.js')
+let cal = new Calculator2()
 
 var app = express()
+
+let arr1 = ''
+let arr2 = ''
 var array1 = ''
 var array2 = ''
 var path1 = ''
@@ -38,6 +42,28 @@ app.get('/', function(req, res){
 
 
 
+app.get('/cal', function(req, res){
+  arr1 = array1.toString()
+  arr1 = arr1.split("\n").map(function(item){
+    return parseFloat(item,10)
+  })
+
+  arr2 = array2.toString()
+  arr2 = arr2.split("\n").map(function(item){
+    return parseFloat(item,10)
+  })
+
+  cal.results(arr1, arr2)
+
+  console.log(cal.result1)
+  console.log(cal.result2)
+  res.json({ result1 : cal.result1,
+             result2 : cal.result2,
+             result3 : cal.result3,
+             result4 : cal.result4,
+   })
+  // res.end()
+})
 
 app.get('/reset', function(req, res){
   //reset data and path
@@ -50,10 +76,6 @@ app.get('/reset', function(req, res){
   // res.end('abc')
 })
 
-
-
-
-
 app.get('/nodejs', function(req, res){
   fs.readFile(path.join(__dirname,'view','response.html'), function(err, data){
     if(err){
@@ -65,8 +87,6 @@ app.get('/nodejs', function(req, res){
     res.end(data)
   })
 })
-
-
 
 app.post('/fileupload', function(req, res){
   //use Formidable parsing form data
@@ -218,9 +238,6 @@ app.post('/fileupload', function(req, res){
     }
 });
 })
-
-
-
 
 app.listen(8000, function(){
   console.log('app is running at port 8000')
