@@ -1,4 +1,4 @@
-class Calculator2{
+class Calculator{
   products(a,b){
     let products = []
     let lengthOfArray
@@ -62,15 +62,15 @@ class Calculator2{
     console.log(this.lengthMultiAvg(a,b))
     return difference2
   }
-    results(a, b){
-      //
-      var s =this.subtraction1(a,b)/Math.sqrt(this.subtraction1(a,a)*this.subtraction1(b,b))
-      this.result1 = s
-      this.result2 = Math.pow(s,2)
-      //
-      var h = this.subtraction2(a,b)/this.subtraction2(a,a)
-      console.log("model"+this.subtraction2(a,a))
-      this.result3 = h
-      this.result4 = this.avgOfArray(b) - h* this.avgOfArray(a)
-    }
+  results(a, b){
+    //Part of Correlation
+    let s =this.subtraction1(a,b)/Math.sqrt(this.subtraction1(a,a)*this.subtraction1(b,b))
+    this.Rxy = s
+    this.R2 = Math.pow(s,2)
+
+    //Part of Regression
+    let h = this.subtraction2(a,b)/this.subtraction2(a,a)
+    this.Bata1 = h
+    this.Bata0 = this.avgOfArray(b) - h* this.avgOfArray(a)
+  }
 }

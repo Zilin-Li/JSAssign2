@@ -10,16 +10,15 @@
     <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
     <!-- <script src="public/js/CalculatorModel.js"></script> -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="public/js/Model.js"></script>
     <link rel="stylesheet" href="public/css/stylesheet.css">
     <title>BCPR280 Assignment 2</title>
   </head>
   <body>
-  <div class="jumbotron text-center bg-info">
-    <h1>PR280 - Assignment2: Calculation</h1>
-    <p>Student name:Zilin Li</p>
-  </div>
+    <div class="jumbotron text-center bg-info">
+      <h1>PR280 - Assignment2: Calculation</h1>
+      <p>Student name:Zilin Li</p>
+    </div>
     <div class="container-fluid">
       <div class="row">
 <!-- VueInterface -->
@@ -60,79 +59,48 @@
         <div id="app2" class="col-lg-6 overflow-auto">
         </div>
       </div>
-<!-- Row1 end -->
 
 <!-- Row2 Start -->
-        <div class = "row ">
 <!-- NodeJs Interface -->
-          <div id="app3" class = "col-lg-6 ">
-            <h1 class="navbar bg-dark navbar-dark title ">NodeJs Interface</h1>
-            <div class="jumbotron enterFile">
-
-              <form action="fileupload" id="input1" method="post" enctype="multipart/form-data">
-                <input type="file" name="filetoupload" class="form-control-file border" data-toggle="tooltip" data-placement="bottom" title="Please choose two files." multiple><br/>
-                <input type="submit" id="submit">
-              </form>
-              <div>Arrary1
-                <div>showArray1</div>
-              </div>
-              <div>Arrary2
-                <div>showArray2</div>
-              </div>
+      <div class = "row ">
+        <div id="app3" class = "col-lg-6 ">
+          <h1 class="navbar bg-dark navbar-dark title " >NodeJS Interface</h1>
+          <div class="jumbotron enterFile" >
+            <input type="file" id="input3" class="form-control-file border" data-toggle="tooltip" data-placement="bottom" title="Please choose two files." @change="onFileChange" multiple>
+            <br>
+            <div v-show="arrayInfo">
+              <p>Array1:{{array1}}</p>
+              <p>Array2:{{array2}}</p>
             </div>
-            <table class="table table-bordered">
-              <thead>
-                <tr>
-                  <th>Result of Correlation</th>
-                  <th>Result of Regression</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>R<sub>xy</sub> = <label id="Rxy">Rxy</label> </td>
-                  <td>&beta;<sub>0</sub> = <label id="Bata0">Bata0</label></td>
-                </tr>
-                <tr>
-                    <td>R<sup>2</sup> = <label id="R2">R2</label></td>
-                  <td>&beta;<sub>1</sub> = <label id="Bata1">Bata1</label></td>
-                </tr>
-              </tbody>
-            </table>
-            <!-- <input type="button" value="Calculation Results" id="cal" class="btn btn-primary" onclick="window.location.href = 'http://localhost:8000/cal';"> -->
-            <input type="button" value="Calculation Results" id="cal" class="btn btn-primary" >
-            <form action="reset" method="get" enctype="multipart/form-data">
-            <input type="submit" value= "reset" id="reset" class="btn btn-primary ">
-          </form>
+            <div v-show="errorMess">{{errorMessage}}</div>
+          </div>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Result of Correlation</th>
+                <th>Result of Regression</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>R<sub>xy</sub> = {{Rxy}} </td>
+                <td>&beta;<sub>0</sub> = {{Bata0}}</td>
+              </tr>
+              <tr>
+                <td>R<sup>2</sup> = {{R2}}</td>
+                <td>&beta;<sub>1</sub> = {{Bata1}}</td>
+              </tr>
+            </tbody>
+          </table>
+          <input type="button" value="Calculation Results" class="btn btn-primary" @click="getResults">
+          <input type="button" value="Reset" class="btn btn-primary " @click="resetFile">
         </div>
       </div>
     </div>
-
     <footer class="jumbotron text-center bg-info"></footer>
   </body>
 </html>
+
 <script src="public/js/VueInter.js"></script>
+<script src="public/js/VueInter2.js"></script>
 <script src="public/js/ReactInter.js" type="text/babel"></script>
-
-
-<script>
-
-
-$(document).ready(function(){
-  $("#cal").click(function(event){
-    event.preventDefault();
-       $.ajax({
-           method: 'get',
-           url: '/cal',
-           success: function(data) {
-            $('#Rxy').html(data.Rxy);
-            $('#R2').html(data.R2);
-            $('#Bata1').html(data.Bata1);
-            $('#Bata0').html(data.Bata0);
-           }
-       })
-   })
- })
-
-
-
-</script>

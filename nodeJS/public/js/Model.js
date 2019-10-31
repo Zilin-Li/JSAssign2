@@ -1,4 +1,4 @@
-class Calculator2{
+class Calculator{
   //This function put all X(i)*Y(i) results in an array.
   products(array1,array2){
     let products = []

@@ -1,4 +1,4 @@
-class Calculator2{
+class Calculator{
   //This function put all X(i)*Y(i) results in an array.
   products(array1,array2){
     let products = []
@@ -86,4 +86,4 @@ class Calculator2{
     this.Bata0 = this.avgOfArray(b) - h* this.avgOfArray(a)
   }
 }
-module.exports = Calculator2
+module.exports = Calculator

@@ -16,7 +16,7 @@ class FileInput extends React.Component {
     this.onFileChange = this.onFileChange.bind(this)
     this.getResults = this.getResults.bind(this)
     this.resetFile = this.resetFile.bind(this)
-    this.calculator = new Calculator2()
+    this.calculator = new Calculator()
   }
   onFileChange (e) {
     let files = e.target.files

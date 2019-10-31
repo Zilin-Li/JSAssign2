@@ -1,5 +1,5 @@
 var cor = new Vue({
-  el:'#app1',
+  el:'#app3',
   data:{
     abc:[],
     Rxy:"",
@@ -12,8 +12,6 @@ var cor = new Vue({
     arrayInfo:false,
     errorMess:false,
     errorMessage:"",
-
-  //  calculator: new Calculator()
     calculator: new Calculator()
 },
   methods:{
@@ -21,7 +19,6 @@ var cor = new Vue({
       let files = e.target.files
       this.arrayInfo=false
       this.errorMess=false
-
       if(files.length > 2){
         // if user uploaded more than two files
         //tell user upload one or two files.
@@ -96,6 +93,7 @@ var cor = new Vue({
       }
     },
     resetFile(){
+      console.log('reset')
       this.array1=''
       this.array2=''
       this.arrayInfo=false
@@ -104,14 +102,33 @@ var cor = new Vue({
       this.R2 = ''
       this.Bata1 = ''
       this.Bata0 = ''
-      document.getElementById("input1").value = ""
+      document.getElementById("input3").value = ""
     },
     getResults(){
-       this.calculator.results(this.array1, this.array2)
-       this.Rxy = this.calculator.Rxy
-       this.R2 = this.calculator.R2
-       this.Bata1 = this.calculator.Bata1
-       this.Bata0 = this.calculator.Bata0
+      const self = this;
+      let reqPath = 'http://localhost:8080/?array1=' + this.array1 +'&array2='+this.array2
+      console.log('Send get require to server with data: ' + reqPath)
+      fetch(reqPath, {
+          method: 'get'
+        })
+        .then(function (response) {
+          if (response.status === 200) {
+            return response.text()
+          }
+        })
+        .then(function (data) {
+          console.log("received JSON data from server: " + data)
+          // document.getElementById('data').innerHTML = data
+           obj = JSON.parse(data)
+           // https://stackoverflow.com/questions/48336284/data-does-not-update-in-vue-js/48336370
+           self.Rxy = obj.Rxy
+           self.R2 = obj.R2
+           self.Bata1 = obj.Bata1
+           self.Bata0 = obj.Bata0
+        })
+        .catch(function (err) {
+          console.log(console.log('Fetch Error :-S', err))
+        })
      }
   },
 });
