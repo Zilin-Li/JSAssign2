@@ -86,3 +86,4 @@ class Calculator{
     this.Bata0 = this.avgOfArray(b) - h* this.avgOfArray(a)
   }
 }
+//module.exports = Calculator

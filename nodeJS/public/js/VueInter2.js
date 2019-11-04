@@ -1,18 +1,18 @@
+//
 var cor = new Vue({
   el:'#app3',
   data:{
     abc:[],
-    Rxy:"",
-    R2:"",
-    Bata1:"",
-    Bata0:"",
+    Rxy:'',
+    R2:'',
+    Bata1:'',
+    Bata0:'',
     content:'',
     array1:[],
     array2:[],
     arrayInfo:false,
     errorMess:false,
-    errorMessage:"",
-    calculator: new Calculator()
+    errorMessage:'',
 },
   methods:{
     onFileChange(e) {
@@ -104,8 +104,9 @@ var cor = new Vue({
       this.Bata0 = ''
       document.getElementById("input3").value = ""
     },
+    //Send the data to server and Parses the results returned from the server.
     getResults(){
-      const self = this;
+      const self = this
       let reqPath = 'http://localhost:8080/?array1=' + this.array1 +'&array2='+this.array2
       console.log('Send get require to server with data: ' + reqPath)
       fetch(reqPath, {
@@ -120,6 +121,7 @@ var cor = new Vue({
           console.log("received JSON data from server: " + data)
           // document.getElementById('data').innerHTML = data
            obj = JSON.parse(data)
+           console.log("my this in:" + this)
            // https://stackoverflow.com/questions/48336284/data-does-not-update-in-vue-js/48336370
            self.Rxy = obj.Rxy
            self.R2 = obj.R2
@@ -131,4 +133,4 @@ var cor = new Vue({
         })
      }
   },
-});
+})
