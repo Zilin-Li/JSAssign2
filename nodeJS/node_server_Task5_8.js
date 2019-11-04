@@ -2,15 +2,15 @@ const http = require('http')
 const fs = require('fs')
 const url = require('url')
 const path = require('path')
-const Calculator = require('./public/js/ModelNode.js')
-let cal = new Calculator()
+const Calculator = require('./public/js/Model.js')
+const cal = new Calculator()
 // maps file extention to MIME types
 const mimeType = {
   // '.ico': 'image/x-icon',
   '.html': 'text/html',
   '.js': 'text/javascript',
   '.json': 'application/json',
-  '.css': 'text/css',
+  '.css': 'text/css'
   // '.png': 'image/png',
   // '.jpg': 'image/jpeg',
   // '.wav': 'audio/wav',
@@ -26,22 +26,22 @@ http.createServer(function (req, res) {
   req.url = req.url.toLowerCase()
   req.method = req.method.toLowerCase()
   // Parse the request containing file name
-  let pathname = url.parse(req.url).pathname
+  const pathname = url.parse(req.url).pathname
+
   // Get the extension of the required file
   const ext = path.parse(pathname).ext
-  if(req.url === '/' || req.url === '/index' && req.method ==='get'){
-    //read index.html and return
-    fs.readFile(path.join(__dirname, 'view', 'index.html'), function(err, data){
-      if(err){
+  if ((req.url === '/' || req.url === '/index') && req.method === 'get') {
+    // read index.html and return
+    fs.readFile(path.join(__dirname, 'view', 'index.html'), function (err, data) {
+      if (err) {
         throw err
       }
       res.end(data)
     })
-  }
-  else if(req.url.startsWith('/public') && req.method ==='get'){
-    //if user's request starts from "/public", means user requested static resources
-    fs.readFile(path.join(__dirname, req.url), function(err, data){
-      if(err){
+  } else if (req.url.startsWith('/public') && req.method === 'get') {
+    // if user's request starts from "/public", means user requested static resources
+    fs.readFile(path.join(__dirname, req.url), function (err, data) {
+      if (err) {
         throw err
       }
       res.writeHead(200, {
@@ -49,32 +49,29 @@ http.createServer(function (req, res) {
       })
       res.end(data)
     })
-  }
-  else if(req.url.startsWith('/?') && req.method ==='get'){
-    let getUserData = url.parse(req.url, true).query
+  } else if (req.url.startsWith('/?') && req.method === 'get') {
+    const getUserData = url.parse(req.url, true).query
 
-    let array1 =getUserData.array1.split(",").map(function(item){
-          return parseFloat(item,10)
-        })
-    let array2 =getUserData.array2.split(",").map(function(item){
-          return parseFloat(item,10)
-        })
-        
+    const array1 = getUserData.array1.split(',').map(function (item) {
+      return parseFloat(item, 10)
+    })
+    const array2 = getUserData.array2.split(',').map(function (item) {
+      return parseFloat(item, 10)
+    })
+
     cal.results(array1, array2)
-    //prepare result for user
+    // prepare result for user
     let result = {
-                 Rxy : cal.Rxy,
-                 R2 : cal.R2,
-                 Bata1 : cal.Bata1,
-                 Bata0 : cal.Bata0,
+      Rxy: cal.Rxy,
+      R2: cal.R2,
+      Bata1: cal.Bata1,
+      Bata0: cal.Bata0
     }
-    //return JSON result
+    // return JSON result
     result = JSON.stringify(result)
     res.write(result)
     res.end()
-  }
-  else
-  {
+  } else {
     res.writeHead(404, {
       'Content-Type': 'text/html'
     })
